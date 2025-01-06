@@ -1,2 +1,29 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+users = {"admin": "admin123", "student": "student123"}  # Simulated user database
+
+def elearning_platform():
+    attempts = 3
+    while attempts > 0:
+        username = input("Enter your username: ")
+        password = input("Enter your password: ")
+
+        if username in users and users[username] == password:
+            print("Login successful!")
+            if username == "admin":
+                print("Welcome Admin. You can manage courses.")
+            else:
+                print("Welcome Student. You can enroll in courses.")
+                while True:
+                    course = input("Enter course name to enroll (or 'exit' to quit): ").lower()
+                    if course == 'exit':
+                        print("Exiting enrollment system.")
+                        break
+                    else:
+                        print(f"You have enrolled in {course}.")
+            break
+        else:
+            attempts -= 1
+            print(f"Invalid credentials. {attempts} attempt(s) remaining.")
+    if attempts == 0:
+        print("Too many failed attempts. Try again later.")
+
+elearning_platform()
